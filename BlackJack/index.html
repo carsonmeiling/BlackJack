@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+  <title>BlackJack</title>
+</head>
+
+<body onload = "createDeck()">
+  <div class="title">
+    <h1>Wanna Test Your Luck?</h1>
+  </div>
+  <div class="button reset">
+    <button id = "start" class="button"  name="start">Start New Game</button>
+  </div>
+
+  <div class="dealer container">
+    <h3>Dealer's Cards</h3>
+    <img id = "dealerCard1" class="cards" src="Images/cardBack.png">
+
+    <img id = "dealerCard2" class="cards" src="Images/cardBack.png">
+
+  </div>
+
+  <div class="player container">
+    <h3>Player's Cards</h3>
+
+    <img id = "playerCard1" class="cards" src="Images/cardBack.png">
+    <img id = "PlayerCard2" class="cards" src="Images/cardBack.png">
+    <div class="">
+      <button id = "hit" class="button" type="button" name="hit">Hit</button>
+      <button id = "stay" class="button" type="button" name="stay">Stay</button>
+
+    </div>
+  </div>
+
+  <footer>
+    Carson Meiling 2019
+  </footer>
+
+  <script src="index.js" charset="utf-8"></script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+/******** Tag Selectors ********/
+body{
+  background-color: #404b69;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+
+}
+
+h1{
+  font-size: 2.5em;
+  text-align: center;
+  color: #f73859;
+
+}
+h3{
+  font-size: 1.75em;
+  color: #f73859;
+}
+img{
+  width: 200px;
+  height: 300px;
+}
+
+
+
+/******** Class Selectors ********/
+ .container{
+   text-align: center;
+ }
+
+
+/******** ID Selectors ********/
