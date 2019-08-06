@@ -1,11 +1,14 @@
 // Welcome to Blackjack
 
-// Creates the deck of cards.
-
-var deck = [];
+// Add event listeners
+window.onload = function () {
+  let startBtn = document.getElementById("start");
+  startBtn.addEventListener("click", startNewGame);
+}
 
 // creates a deck of cards as array of objects
 function createDeck() {
+  let deck = [];
   let suites = ["Hearts", "Clubs", "Diamonds", "Spades"];
   let cardValues = [{
     name: "Two",
@@ -48,60 +51,65 @@ function createDeck() {
     value: 11
   }];
 
-
   for (let suitesIndex = 0; suitesIndex < suites.length; suitesIndex++) {
     for (let cardValuesIndex = 0; cardValuesIndex < cardValues.length; cardValuesIndex++) {
-
       deck.push({
         suite: suites[suitesIndex],
         value: cardValues[cardValuesIndex],
-        image: cardValues[cardValuesIndex].name + 'of' + suites[suitesIndex]
+        image: 'Images/' + cardValues[cardValuesIndex].name + 'of' + suites[suitesIndex] + '.png'
       });
-
     }
   }
-  // This takes a ordered deck, and shuffles the deck
-  function shuffle(orderedDeck) {
-    var currentIndex = orderedDeck.length,
-      temporaryValue, randomIndex;
 
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
+  return deck
+}
 
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
+// This takes a ordered deck, and shuffles the deck
+function shuffle(orderedDeck) {
+  var currentIndex = orderedDeck.length,
+    temporaryValue, randomIndex;
 
-      // And swap it with the current element.
-      temporaryValue = orderedDeck[currentIndex];
-      orderedDeck[currentIndex] = orderedDeck[randomIndex];
-      orderedDeck[randomIndex] = temporaryValue;
-    }
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
 
-    return orderedDeck;
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = orderedDeck[currentIndex];
+    orderedDeck[currentIndex] = orderedDeck[randomIndex];
+    orderedDeck[randomIndex] = temporaryValue;
   }
-  shuffle(deck);
+
+  return orderedDeck;
 }
 
 // Deals new cards from top of deck. One card to dealer and two player.
 
+function dealCards(deck) {
+  let dealerCard1 = document.getElementById("dealerCard1");
+  let playerCard1 = document.getElementById("playerCard1");
+  let playerCard2 = document.getElementById("playerCard2");
+
+  dealerCard1.setAttribute("src", deck[0].image);
+  deck.shift();
+  playerCard1.setAttribute("src", deck[0].image);
+  deck.shift();
+  playerCard2.setAttribute("src", deck[0].image);
+  deck.shift();
+}
+
+function startNewGame() {
+  let deck = createDeck();
+  let shuffled_deck = shuffle(deck);
+  dealCards(shuffled_deck);
+}
 
 // startingDeal is activatd by "Start" button click
+
 let startBtn = document.getElementById("start");
-startBtn.addEventListener("Click", function () {
-  let dealerCard1 = document.getElementById("dealerCard1");
-  let playerCard1 = document.getElementById("dealerCard1");
-  let playerCard2 = document.getElementById("dealerCard2");
-
-  dealerCard1.setAttribute("src", "Images/" + deck[0].image + ".png");
-    deck.shift();
-  playerCard1.setAttribute("src", "Images/" + deck[0].image + ".png");
-    deck.shift();
-  playerCard2.setAttribute("src", "Images/" + deck[0].image + ".png");
-    deck.shift();
-}
-);
-
+startBtn.addEventListener("Click", dealCards);
 
 
 // function dealCard(deck) {
