@@ -1,9 +1,39 @@
 // Welcome to Blackjack
 
-// Add event listeners
-window.onload = function () {
+// DOM Variables
+let dealerCard1 = document.getElementById("dealerCard1");
+let dealerCard2 = document.getElementById("dealerCard2");
+let dealerCard3 = document.getElementById("dealerCard3");
+let dealerCard4 = document.getElementById("dealerCard4");
+let dealerCard5 = document.getElementById("dealerCard5");
+let dealerCard6 = document.getElementById("dealerCard6");
+
+let playerCard1 = document.getElementById("playerCard1");
+let playerCard2 = document.getElementById("playerCard2");
+let playerCard3 = document.getElementById("playerCard3");
+let playerCard4 = document.getElementById("playerCard4");
+let playerCard5 = document.getElementById("playerCard5");
+let playerCard6 = document.getElementById("playerCard6");
+
+// buttons
+
+
+// On window load
+window.onload = function() {
+  let hit = document.getElementById("hit");
+  let stay = document.getElementById("stay");
   let startBtn = document.getElementById("start");
   startBtn.addEventListener("click", startNewGame);
+  dealerCard3.style.display = 'none';
+  dealerCard4.style.display = 'none';
+  dealerCard5.style.display = 'none';
+  dealerCard6.style.display = 'none';
+
+  playerCard3.style.display = 'none';
+  playerCard4.style.display = 'none';
+  playerCard5.style.display = 'none';
+  playerCard6.style.display = 'none';
+
 }
 
 // creates a deck of cards as array of objects
@@ -88,9 +118,6 @@ function shuffle(orderedDeck) {
 // Deals new cards from top of deck. One card to dealer and two player.
 
 function dealCards(deck) {
-  let dealerCard1 = document.getElementById("dealerCard1");
-  let playerCard1 = document.getElementById("playerCard1");
-  let playerCard2 = document.getElementById("playerCard2");
 
   dealerCard1.setAttribute("src", deck[0].image);
   deck.shift();
@@ -98,6 +125,7 @@ function dealCards(deck) {
   deck.shift();
   playerCard2.setAttribute("src", deck[0].image);
   deck.shift();
+  return deck;
 }
 
 function startNewGame() {
@@ -106,35 +134,34 @@ function startNewGame() {
   dealCards(shuffled_deck);
 }
 
-// startingDeal is activatd by "Start" button click
+// Hit button, adds new card to player cards 3-6
+// needs work, cards are not changing src
+hit.addEventListener('click', function(deck) {
+  if (playerCard3.style.display === 'none') {
+    playerCard3.style.display = "inline";
+    playerCard3.setAttribute("src", deck[0].image);
+    deck.shift();
+  } else if (playerCard4.style.display === 'none') {
+    playerCard4.style.display = 'inline';
+    playerCard4.setAttribute("src", deck[0].image);
+    deck.shift();
+  } else if (playerCard5.style.display === 'none') {
+    playerCard5.style.display = 'inline';
+    playerCard5.setAttribute("src", deck[0].image);
+    deck.shift();
+  } else if (playerCard6.style.display === 'none') {
+    playerCard6.style.display = 'inline';
+    playerCard6.setAttribute("src", deck[0].image);
+    deck.shift();
+  } else;
+});
 
-let startBtn = document.getElementById("start");
-startBtn.addEventListener("Click", dealCards);
+// Keeps track of player and dealer score
+function score(){
+  // ToDo
+};
 
-
-// function dealCard(deck) {
-//   // This function modifies the `deck` parameter in place
-//   cardIndex = Math.floor(Math.random() * deck.length);
-//   var card = deck.splice(cardsIndex, 1)[0];
-//   return card;
-// }
-
-
-
-// function dealCards(deck, numberOfCards) {
-//   var cards = [];
-//   for (i = 0; i < numberOfCards; i++) {
-//     var card = dealCard(deck);
-//     cards.push(card);
-//   }
-//   return cards;
-// }
-//
-// function dealCardsToPlayers(deck, numberOfPlayers, numberOfCards) {
-//   var playerCards = {};
-//   for (i = 0; i < numberOfPlayers; i++) {
-//     cards = dealCards(deck, numberOfCards);
-//     playerCards[i] = cards;
-//   }
-//   return playerCards;
-// }
+// Over 21 logic in Game
+function over21(){
+  // ToDo
+};
