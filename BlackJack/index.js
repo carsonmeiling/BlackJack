@@ -137,6 +137,7 @@ function startNewGame() {
 // Hit button, adds new card to player cards 3-6
 // needs work, cards are not changing src
 hit.addEventListener('click', function(deck) {
+
   if (playerCard3.style.display === 'none') {
     playerCard3.style.display = "inline";
     playerCard3.setAttribute("src", deck[0].image);
@@ -156,12 +157,17 @@ hit.addEventListener('click', function(deck) {
   } else;
 });
 
+// deals cards to dealer when the "stay" btn is clicked
+stay.addEventListener('click', function(){
+
+});
+
 // Keeps track of player and dealer score
-function score(){
-  // ToDo
+function playerScore(){
+  // // TODO:
 };
 
 // Over 21 logic in Game
 function over21(){
-  // ToDo
+  // TODO:  
 };
