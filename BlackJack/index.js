@@ -1,6 +1,9 @@
 // Welcome to Blackjack
 
 // DOM Variables
+let deck = [];
+let dealersHand = [];
+let playersHand = [];
 let dealerCard1 = document.getElementById("dealerCard1");
 let dealerCard2 = document.getElementById("dealerCard2");
 let dealerCard3 = document.getElementById("dealerCard3");
@@ -14,6 +17,7 @@ let playerCard3 = document.getElementById("playerCard3");
 let playerCard4 = document.getElementById("playerCard4");
 let playerCard5 = document.getElementById("playerCard5");
 let playerCard6 = document.getElementById("playerCard6");
+
 
 // buttons
 
@@ -125,19 +129,20 @@ function dealCards(deck) {
   deck.shift();
   playerCard2.setAttribute("src", deck[0].image);
   deck.shift();
+
   return deck;
 }
 
 function startNewGame() {
-  let deck = createDeck();
-  let shuffled_deck = shuffle(deck);
-  dealCards(shuffled_deck);
+  let newDeck = createDeck();
+  let shuffledDeck = shuffle(newDeck);
+  deck = dealCards(shuffledDeck);
 }
 
 // Hit button, adds new card to player cards 3-6
 // needs work, cards are not changing src
-hit.addEventListener('click', function(deck) {
-
+hit.addEventListener('click', function() {
+  console.log(deck);
   if (playerCard3.style.display === 'none') {
     playerCard3.style.display = "inline";
     playerCard3.setAttribute("src", deck[0].image);
@@ -154,7 +159,7 @@ hit.addEventListener('click', function(deck) {
     playerCard6.style.display = 'inline';
     playerCard6.setAttribute("src", deck[0].image);
     deck.shift();
-  } else;
+  }
 });
 
 // deals cards to dealer when the "stay" btn is clicked
@@ -169,5 +174,5 @@ function playerScore(){
 
 // Over 21 logic in Game
 function over21(){
-  // TODO:  
+  // TODO:
 };
