@@ -124,19 +124,27 @@ function shuffle(orderedDeck) {
 function dealCards(deck) {
 
   dealerCard1.setAttribute("src", deck[0].image);
-  deck.shift();
+  let shiftedCard = deck.shift();
+  dealersHand.push(shiftedCard);
   playerCard1.setAttribute("src", deck[0].image);
-  deck.shift();
+  let shiftedCard2 = deck.shift();
+  playersHand.push(shiftedCard2);
   playerCard2.setAttribute("src", deck[0].image);
-  deck.shift();
+  let shiftetCard3 = deck.shift();
+  playersHand.push(shiftetCard3);
+
+  playerScore();
 
   return deck;
+  return dealersHand;
+  return playersHand;
 }
 
 function startNewGame() {
   let newDeck = createDeck();
   let shuffledDeck = shuffle(newDeck);
   deck = dealCards(shuffledDeck);
+  document.getElementById('start').style.display = "none";
 }
 
 // Hit button, adds new card to player cards 3-6
@@ -146,19 +154,26 @@ hit.addEventListener('click', function() {
   if (playerCard3.style.display === 'none') {
     playerCard3.style.display = "inline";
     playerCard3.setAttribute("src", deck[0].image);
-    deck.shift();
+    let shiftedCard = deck.shift();
+    playersHand.push(shiftedCard);
   } else if (playerCard4.style.display === 'none') {
     playerCard4.style.display = 'inline';
     playerCard4.setAttribute("src", deck[0].image);
-    deck.shift();
+    let shiftedCard2 = deck.shift();
+    playersHand.push(shiftedCard2);
   } else if (playerCard5.style.display === 'none') {
     playerCard5.style.display = 'inline';
     playerCard5.setAttribute("src", deck[0].image);
-    deck.shift();
+    let shiftedCard3 = deck.shift();
+  playersHand.push(shiftedCard3);
   } else if (playerCard6.style.display === 'none') {
     playerCard6.style.display = 'inline';
     playerCard6.setAttribute("src", deck[0].image);
-    deck.shift();
+    let shiftedCard4 = deck.shift();
+    playersHand.push(shiftedCard4);
+
+    
+  return playersHand;
   }
 });
 
@@ -169,7 +184,11 @@ stay.addEventListener('click', function(){
 
 // Keeps track of player and dealer score
 function playerScore(){
-  // // TODO:
+  for(i = 0; i < playersHand.length; i++){
+    let total = 0;
+    total  = playersHand[i].value.value + total;
+    document.getElementById('playerTotal').innerHTML = "Player Total: " + total;
+  }
 };
 
 // Over 21 logic in Game

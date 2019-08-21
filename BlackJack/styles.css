@@ -21,7 +21,13 @@ img{
   height: 300px;
 }
 
+p{
+  color: whitesmoke; 
+}
 
+footer{
+  color: whitesmoke;
+}
 
 /******** Class Selectors ********/
  .container{
