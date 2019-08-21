@@ -1,9 +1,13 @@
 // Welcome to Blackjack
 
-// DOM Variables
 let deck = [];
 let dealersHand = [];
 let playersHand = [];
+// let dealersTotal = 0;
+// let playersTotal = 0;
+
+// DOM Variables
+
 let dealerCard1 = document.getElementById("dealerCard1");
 let dealerCard2 = document.getElementById("dealerCard2");
 let dealerCard3 = document.getElementById("dealerCard3");
@@ -172,24 +176,37 @@ hit.addEventListener('click', function() {
     let shiftedCard4 = deck.shift();
     playersHand.push(shiftedCard4);
 
-    
   return playersHand;
   }
+  playerScore();
+
 });
 
 // deals cards to dealer when the "stay" btn is clicked
 stay.addEventListener('click', function(){
-
+hit.style.display = 'none';
+dealerCard2.setAttribute('src', deck[0].image);
 });
 
-// Keeps track of player and dealer score
+// Keeps track of player score
 function playerScore(){
+  let total = 0;
   for(i = 0; i < playersHand.length; i++){
-    let total = 0;
     total  = playersHand[i].value.value + total;
     document.getElementById('playerTotal').innerHTML = "Player Total: " + total;
   }
+  return total
 };
+
+// Keeps track of the dealer's score
+function dealerScore(){
+  let total = 0;
+  for(i = 0; i < dealersHand.length; i++){
+    total  = dealersHand[i].value.value + total;
+    document.getElementById('dealerTotal').innerHTML = "Dealer Total: " + total;
+  }
+  return total
+}
 
 // Over 21 logic in Game
 function over21(){
