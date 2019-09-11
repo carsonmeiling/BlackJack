@@ -3,8 +3,8 @@
 let deck = [];
 let dealersHand = [];
 let playersHand = [];
-// let dealersTotal = 0;
-// let playersTotal = 0;
+let dealersTotal = 0;
+let playersTotal = 0;
 
 // DOM Variables
 
@@ -152,7 +152,6 @@ function startNewGame() {
 }
 
 // Hit button, adds new card to player cards 3-6
-// needs work, cards are not changing src
 hit.addEventListener('click', function() {
   console.log(deck);
   if (playerCard3.style.display === 'none') {
@@ -169,46 +168,79 @@ hit.addEventListener('click', function() {
     playerCard5.style.display = 'inline';
     playerCard5.setAttribute("src", deck[0].image);
     let shiftedCard3 = deck.shift();
-  playersHand.push(shiftedCard3);
+    playersHand.push(shiftedCard3);
   } else if (playerCard6.style.display === 'none') {
     playerCard6.style.display = 'inline';
     playerCard6.setAttribute("src", deck[0].image);
     let shiftedCard4 = deck.shift();
     playersHand.push(shiftedCard4);
 
-  return playersHand;
+    return playersHand;
   }
   playerScore();
 
 });
 
 // deals cards to dealer when the "stay" btn is clicked
-stay.addEventListener('click', function(){
-hit.style.display = 'none';
-dealerCard2.setAttribute('src', deck[0].image);
-});
+// stay.addEventListener('click', function() {
+//   hit.style.display = 'none';
+//   dealerCard2.setAttribute('src', deck[0].image);
+// });
+stay.addEventListener('stay', function() {
+  console.log(deck);
+  if (dealerCard3.style.display === 'none') {
+    dealerCard3.style.display = "inline";
+    dealerCard3.setAttribute("src", deck[0].image);
+    let shiftedCard = deck.shift();
+    dealersHand.push(shiftedCard);
+  } else if (dealerCard4.style.display === 'none') {
+    dealerCard4.style.display = 'inline';
+    dealerCard4.setAttribute("src", deck[0].image);
+    let shiftedCard2 = deck.shift();
+    dealersHand.push(shiftedCard2);
+  } else if (dealerCard5.style.display === 'none') {
+    dealerCard5.style.display = 'inline';
+    dealerCard5.setAttribute("src", deck[0].image);
+    let shiftedCard3 = deck.shift();
+    dealersHand.push(shiftedCard3);
+  } else if (playerCard6.style.display === 'none') {
+    dealerCard6.style.display = 'inline';
+    dealerCard6.setAttribute("src", deck[0].image);
+    let shiftedCard4 = deck.shift();
+    dealersHand.push(shiftedCard4);
+
+    return dealersHand;
+  }
+  dealerScore();
+})
 
 // Keeps track of player score
-function playerScore(){
+function playerScore() {
   let total = 0;
-  for(i = 0; i < playersHand.length; i++){
-    total  = playersHand[i].value.value + total;
+  for (i = 0; i < playersHand.length; i++) {
+    total = playersHand[i].value.value + total;
     document.getElementById('playerTotal').innerHTML = "Player Total: " + total;
   }
-  return total
-};
+  playersTotal = total;
+  return total;
+  return playersTotal;
+}
 
 // Keeps track of the dealer's score
-function dealerScore(){
+function dealerScore() {
   let total = 0;
-  for(i = 0; i < dealersHand.length; i++){
-    total  = dealersHand[i].value.value + total;
+  for (i = 0; i < dealersHand.length; i++) {
+    total = dealersHand[i].value.value + total;
     document.getElementById('dealerTotal').innerHTML = "Dealer Total: " + total;
   }
-  return total
+  dealersTotal = total;
+  return total;
+  return dealersTotal;
 }
 
 // Over 21 logic in Game
-function over21(){
-  // TODO:
-};
+function over21() {
+  if (playersTotal > 21) {
+    alert("over 21");
+  }
+}
