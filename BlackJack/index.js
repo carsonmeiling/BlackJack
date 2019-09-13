@@ -144,11 +144,13 @@ function dealCards(deck) {
   return playersHand;
 }
 
+// Start new game when btn is clicked.
 function startNewGame() {
   let newDeck = createDeck();
   let shuffledDeck = shuffle(newDeck);
   deck = dealCards(shuffledDeck);
   document.getElementById('start').style.display = "none";
+  dealerScore();
 }
 
 // Hit button, adds new card to player cards 3-6
@@ -181,12 +183,11 @@ hit.addEventListener('click', function() {
 
 });
 
-// deals cards to dealer when the "stay" btn is clicked
-// stay.addEventListener('click', function() {
-//   hit.style.display = 'none';
-//   dealerCard2.setAttribute('src', deck[0].image);
-// });
-stay.addEventListener('stay', function() {
+// Gives cards to dealer deck when stay btn is clicked
+stay.addEventListener('stay', stayButton());
+
+function stayButton() {
+  alert("stay button clicked")
   console.log(deck);
   if (dealerCard3.style.display === 'none') {
     dealerCard3.style.display = "inline";
@@ -212,7 +213,7 @@ stay.addEventListener('stay', function() {
     return dealersHand;
   }
   dealerScore();
-})
+}
 
 // Keeps track of player score
 function playerScore() {
@@ -241,6 +242,6 @@ function dealerScore() {
 // Over 21 logic in Game
 function over21() {
   if (playersTotal > 21) {
-    alert("over 21");
+
   }
 }
