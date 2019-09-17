@@ -29,7 +29,7 @@ let playerCard6 = document.getElementById("playerCard6");
 // On window load
 window.onload = function() {
   let hit = document.getElementById("hit");
-  let stay = document.getElementById("stay");
+  // let stay = document.getElementById("stay");
   let startBtn = document.getElementById("start");
   startBtn.addEventListener("click", startNewGame);
   dealerCard3.style.display = 'none';
@@ -184,36 +184,18 @@ hit.addEventListener('click', function() {
 });
 
 // Gives cards to dealer deck when stay btn is clicked
-stay.addEventListener('stay', stayButton());
-
-function stayButton() {
-  alert("stay button clicked")
-  console.log(deck);
-  if (dealerCard3.style.display === 'none') {
-    dealerCard3.style.display = "inline";
-    dealerCard3.setAttribute("src", deck[0].image);
-    let shiftedCard = deck.shift();
-    dealersHand.push(shiftedCard);
-  } else if (dealerCard4.style.display === 'none') {
-    dealerCard4.style.display = 'inline';
-    dealerCard4.setAttribute("src", deck[0].image);
-    let shiftedCard2 = deck.shift();
-    dealersHand.push(shiftedCard2);
-  } else if (dealerCard5.style.display === 'none') {
-    dealerCard5.style.display = 'inline';
-    dealerCard5.setAttribute("src", deck[0].image);
-    let shiftedCard3 = deck.shift();
-    dealersHand.push(shiftedCard3);
-  } else if (playerCard6.style.display === 'none') {
-    dealerCard6.style.display = 'inline';
-    dealerCard6.setAttribute("src", deck[0].image);
-    let shiftedCard4 = deck.shift();
-    dealersHand.push(shiftedCard4);
-
-    return dealersHand;
-  }
+stay.addEventListener('click', function(){
+  dealerCard2.setAttribute("src", deck[0].image);
+  let shiftedCard = deck.shift();
+  dealersHand.push(shiftedCard);
   dealerScore();
+  return dealersHand;
 }
+);
+
+// function stayButton() {
+//   console.log("working");
+// }
 
 // Keeps track of player score
 function playerScore() {
@@ -242,6 +224,6 @@ function dealerScore() {
 // Over 21 logic in Game
 function over21() {
   if (playersTotal > 21) {
-
+      // TODO
   }
 }
