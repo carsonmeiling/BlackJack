@@ -193,10 +193,6 @@ stay.addEventListener('click', function(){
 }
 );
 
-// function stayButton() {
-//   console.log("working");
-// }
-
 // Keeps track of player score
 function playerScore() {
   let total = 0;
@@ -222,8 +218,22 @@ function dealerScore() {
 }
 
 // Over 21 logic in Game
-function over21() {
-  if (playersTotal > 21) {
-      // TODO
-  }
-}
+
+function dealerOver21(){
+  for(i = 3;dealerTotal <= 21;i++){
+    dealerCard[i].style.display = 'inline';
+    dealerCard[i].setAttribute('src', deck[0].image);
+    let shiftedCard = deck.shift();
+    dealersHand.push(shiftedCard);
+    dealerScore();
+  } 
+};
+// function over21() {
+//   if (dealersTotal < 30) {
+//     dealerCard3.style.display = 'inline';
+//     dealerCard3.setAttribute('src', deck[0].image);
+//     let shiftedCard = deck.shift();
+//     dealersHand.push(shiftedCard);
+//     dealerScore();
+//   }
+// }
