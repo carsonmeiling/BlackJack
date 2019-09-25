@@ -1,3 +1,5 @@
+// jshint esversion:6
+
 // Welcome to Blackjack
 
 let deck = [];
@@ -99,7 +101,7 @@ function createDeck() {
     }
   }
 
-  return deck
+  return deck;
 }
 
 // This takes a ordered deck, and shuffles the deck
@@ -190,6 +192,7 @@ stay.addEventListener('click', function(){
   dealersHand.push(shiftedCard);
   dealerScore();
   return dealersHand;
+  dealerOver21();
 }
 );
 
@@ -221,12 +224,12 @@ function dealerScore() {
 
 function dealerOver21(){
   for(i = 3;dealerTotal <= 21;i++){
-    dealerCard[i].style.display = 'inline';
-    dealerCard[i].setAttribute('src', deck[0].image);
+    (dealerCard + [i]).style.display = 'inline';
+    (dealerCard + [i]).setAttribute('src', deck[0].image);
     let shiftedCard = deck.shift();
     dealersHand.push(shiftedCard);
     dealerScore();
-  } 
+  }
 };
 // function over21() {
 //   if (dealersTotal < 30) {
