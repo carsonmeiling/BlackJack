@@ -227,36 +227,38 @@ function dealerScore() {
 
 // stay button clicked, adds cards to dealer deck while under 17
 function over21() {
-  if (dealersTotal < 100 && dealerCard3.style.display == 'none') {
+  if (dealersTotal < 17 && dealerCard3.style.display == 'none') {
     dealerCard3.style.display = 'inline';
     dealerCard3.setAttribute('src', deck[0].image);
     let shiftedCard = deck.shift();
     dealersHand.push(shiftedCard);
     dealerScore();
-  } else if (dealersTotal < 100&& dealerCard4.style.display == 'none'){
+  } else if (dealersTotal < 17&& dealerCard4.style.display == 'none'){
     dealerCard4.style.display = 'inline';
     dealerCard4.setAttribute('src', deck[0].image);
     let shiftedCard = deck.shift();
     dealersHand.push(shiftedCard);
     dealerScore();
-  } else if (dealersTotal < 100&& dealerCard5.style.display == 'none') {
+  } else if (dealersTotal < 17&& dealerCard5.style.display == 'none') {
     dealerCard5.style.display = 'inline';
     dealerCard5.setAttribute('src', deck[0].image);
     let shiftedCard = deck.shift();
     dealersHand.push(shiftedCard);
     dealerScore();
-  } else if (dealersTotal < 100&& dealerCard6.style.display == 'none') {
+  } else if (dealersTotal < 17&& dealerCard6.style.display == 'none') {
     dealerCard6.style.display = 'inline';
     dealerCard6.setAttribute('src', deck[0].image);
     let shiftedCard = deck.shift();
     dealersHand.push(shiftedCard);
     dealerScore();
   }
+
 }
 
 // bust function will run over21 if the player's score goes over 21
 
-function bust(playersTotal){
+function bust(){
+  console.log(playersTotal);
   if (playersTotal > 21){
     console.log("player over 21");
     over21();
