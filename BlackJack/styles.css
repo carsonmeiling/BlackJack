@@ -10,23 +10,34 @@ h1{
   font-size: 2.5em;
   text-align: center;
   color: #f73859;
+  padding-bottom: 0;
+  padding-top: 0;
+  margin: 2% 0;
 
 }
 h3{
   font-size: 1.75em;
   color: #f73859;
+  padding: 0;
+  margin: 0;
 }
 img{
-  width: 200px;
-  height: 300px;
+  width: 150px;
+  height: 225px;
 }
 
 p{
-  color: whitesmoke; 
+  color: whitesmoke;
+  margin: 0;
+  padding: 0;
 }
 
 footer{
   color: whitesmoke;
+}
+button{
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 /******** Class Selectors ********/

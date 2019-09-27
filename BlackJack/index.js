@@ -31,7 +31,6 @@ let playerCard6 = document.getElementById("playerCard6");
 // On window load
 window.onload = function() {
   let hit = document.getElementById("hit");
-  // let stay = document.getElementById("stay");
   let startBtn = document.getElementById("start");
   startBtn.addEventListener("click", startNewGame);
   dealerCard3.style.display = 'none';
@@ -44,7 +43,10 @@ window.onload = function() {
   playerCard5.style.display = 'none';
   playerCard6.style.display = 'none';
 
-}
+  document.getElementById('hit').style.display = 'none';
+  document.getElementById('stay').style.display = 'none';
+
+};
 
 // creates a deck of cards as array of objects
 function createDeck() {
@@ -148,6 +150,9 @@ function dealCards(deck) {
 
 // Start new game when btn is clicked.
 function startNewGame() {
+  document.getElementById('reset').style.display = 'none';
+  document.getElementById('hit').style.display = 'inline';
+  document.getElementById('stay').style.display = 'inline';
   let newDeck = createDeck();
   let shuffledDeck = shuffle(newDeck);
   deck = dealCards(shuffledDeck);
@@ -186,20 +191,19 @@ hit.addEventListener('click', function() {
 });
 
 // Gives cards to dealer deck when stay btn is clicked
-stay.addEventListener('click', function(){
+stay.addEventListener('click', function() {
   document.getElementById('stay').style.display = 'none';
   document.getElementById('hit').style.display = 'none';
   dealerCard2.setAttribute("src", deck[0].image);
   let shiftedCard = deck.shift();
   dealersHand.push(shiftedCard);
   dealerScore();
-  for(let i = 0; i < 4; i++){
+  for (let i = 0; i < 4; i++) {
     console.log(i);
     over21();
   }
   return dealersHand;
-}
-);
+});
 
 // Keeps track of player score
 function playerScore() {
@@ -227,40 +231,85 @@ function dealerScore() {
 
 // stay button clicked, adds cards to dealer deck while under 17
 function over21() {
-  if (dealersTotal < 17 && dealerCard3.style.display == 'none') {
+  if (dealersTotal < 17) {
+    dealerCard2.style.display = 'inline';
+    dealerCard2.setAttribute('src', deck[0].image);
+    let shiftedCard = deck.shift();
+    dealersHand.push(shiftedCard);
+    dealerScore();
+  } else if (dealersTotal < 17 && dealerCard3.style.display == 'none') {
     dealerCard3.style.display = 'inline';
     dealerCard3.setAttribute('src', deck[0].image);
     let shiftedCard = deck.shift();
     dealersHand.push(shiftedCard);
     dealerScore();
-  } else if (dealersTotal < 17&& dealerCard4.style.display == 'none'){
+  } else if (dealersTotal < 17 && dealerCard4.style.display == 'none') {
     dealerCard4.style.display = 'inline';
     dealerCard4.setAttribute('src', deck[0].image);
     let shiftedCard = deck.shift();
     dealersHand.push(shiftedCard);
     dealerScore();
-  } else if (dealersTotal < 17&& dealerCard5.style.display == 'none') {
+  } else if (dealersTotal < 17 && dealerCard5.style.display == 'none') {
     dealerCard5.style.display = 'inline';
     dealerCard5.setAttribute('src', deck[0].image);
     let shiftedCard = deck.shift();
     dealersHand.push(shiftedCard);
     dealerScore();
-  } else if (dealersTotal < 17&& dealerCard6.style.display == 'none') {
+  } else if (dealersTotal < 17 && dealerCard6.style.display == 'none') {
     dealerCard6.style.display = 'inline';
     dealerCard6.setAttribute('src', deck[0].image);
     let shiftedCard = deck.shift();
     dealersHand.push(shiftedCard);
     dealerScore();
   }
+  winner();
 
 }
 
 // bust function will run over21 if the player's score goes over 21
 
-function bust(){
+function bust() {
   console.log(playersTotal);
-  if (playersTotal > 21){
+  if (playersTotal > 21) {
     console.log("player over 21");
     over21();
   }
+
 }
+
+// This function determines who wins and sends an alert
+function winner() {
+  document.getElementById('reset').style.display = 'inline';
+  console.log("winner function ran");
+  if (dealersTotal <= 21 && playersTotal >= 22){
+    setTimeout(function() {
+      alert("Dealer Wins, Better Luck Next Time!");
+    }, 1000);
+  } else if (playersTotal <= 21 && dealersTotal >= 22){
+    setTimeout(function() {
+      alert("You Win, Want To Play Again?");
+    }, 1000);
+  } else if (dealersTotal > playersTotal && dealersTotal <= 21) {
+    setTimeout(function() {
+      alert("Dealer Wins, Better Luck Next Time!");
+    }, 1000);
+  } else if (playersTotal > dealersTotal && playersTotal <= 21) {
+    setTimeout(function() {
+      alert("You Win, Want To Play Again?");
+    }, 1000);
+  } else if (playersTotal == dealersTotal) {
+    setTimeout(function() {
+      alert("You Push, give It Another Go!");
+    }, 1000);
+  }
+}
+
+// reset button to start game again
+function reset(){
+  location.reload();
+}
+document.getElementById('reset').addEventListener('click',function(){
+  console.log('reset clicked');
+  location.reload();
+}
+);
