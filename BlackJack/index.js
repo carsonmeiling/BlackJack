@@ -197,6 +197,7 @@ stay.addEventListener('click', function() {
   dealerCard2.setAttribute("src", deck[0].image);
   let shiftedCard = deck.shift();
   dealersHand.push(shiftedCard);
+  console.log('dealcard2 btn');
   dealerScore();
   for (let i = 0; i < 4; i++) {
     console.log(i);
@@ -231,11 +232,13 @@ function dealerScore() {
 
 // stay button clicked, adds cards to dealer deck while under 17
 function over21() {
-  if (dealersTotal < 17) {
+  if (dealersTotal < 17 && dealerCard2.src == "Images/cardBack.png") {
     dealerCard2.style.display = 'inline';
     dealerCard2.setAttribute('src', deck[0].image);
     let shiftedCard = deck.shift();
     dealersHand.push(shiftedCard);
+    console.log("dealcard2");
+
     dealerScore();
   } else if (dealersTotal < 17 && dealerCard3.style.display == 'none') {
     dealerCard3.style.display = 'inline';
